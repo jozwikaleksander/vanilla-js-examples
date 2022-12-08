@@ -5,6 +5,7 @@
     --yellow-accent: #EBCB8B;
     --red-accent: #BF616A;
     --green-accent: #A3BE8C;
+    --orange-accent: #D08770;
     --font-family: 'Fira Code';
     --font-size: 12px;
     --transition:.2s linear all;
@@ -135,4 +136,11 @@ input[type="submit"]{
 input[type="submit"]:hover{
     background-color: var(--red-accent);
     color: var(--foreground-color);
+}
+a{
+    color: var(--red-accent);
+    transition: var(--transition);
+}
+a:hover{
+    color: var(--orange-accent);
 }
