@@ -140,6 +140,7 @@ input[type="submit"]:hover{
 a{
     color: var(--red-accent);
     transition: var(--transition);
+    font-weight: bold;
 }
 a:hover{
     color: var(--orange-accent);
