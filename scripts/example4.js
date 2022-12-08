@@ -1,7 +1,7 @@
 const name = document.querySelector('#name');
 const surname = document.querySelector('#surname');
 const job = document.querySelector('#job');
-const form = document.querySelector('form');
+const form = document.querySelector('#form-example4');
 
 const checkForm = () => {
     if (name.value.length < 3) {

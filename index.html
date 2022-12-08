@@ -11,6 +11,7 @@
     <link rel="stylesheet"
       href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/atom-one-dark.min.css">
     <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
     <script>hljs.highlightAll();</script>
 </head>
@@ -19,6 +20,7 @@
         <!-- Header -->
     <h1>Vanilla JS - przykłady</h1>
     <hr>
+    <h4><i class="fas fa-user"></i> Aleksander Jóźwik <a href="https://github.com/jozwikaleksander">(@jozwikaleksander)</a> | <i class="fas fa-calendar"></i> 13/08/22</h4>
 
     <!-- Main -->
     <div class="example">
@@ -101,7 +103,7 @@ image.addEventListener('mouseout', () => {
     </div>
     <div class="example">
         <h2>Sprawdzanie formularza</h2>
-        <form action="">
+        <form id="form-example4"action="">
             <label for="name">Imię: <input type="text" id="name"></label>
             <label for="surname">Nazwisko: <input type="text" id="surname"></label>
             <label for="job">Zawód: <input type="text" id="job"></label>
@@ -167,12 +169,135 @@ form.addEventListener('submit', function (event) {
             <p>Są to wzorce opisujące łańcuch symboli. Przy ich użyciu można sprawdzać i modyfikować teksty. Wyrażenia regularne są wykorzystywane do sprawdzania, czy ciągi znaków wprowadzonych do formularza są zgodne z wymaganymi wzorcami. Jeżeli chcesz zobaczyć wyrażenia regularne w akcji <a href="https://regex101.com/">kliknij tutaj</a>.</p>
         </div>
     </div>
+
+    <div class="example">
+        <h2>Testowanie danego łańcucha za pomocą wyrażenia regularnego</h2>
+
+        <div class="code-example">
+            <button class="code-btn" value="0" >JS</button>
+<pre><code class="language-js">const x = '00-001';
+const pattern = /^[\d]{2}-[\d]{3}$/;
+
+if(pattern.test(x)) {
+    console.log('Zgodne');
+} else {
+    console.log('Nie zgodne');
+}
+</code></pre>
+        </div>
+        
+        <div class="description">
+            <p>Na początku przypisuje wybrany kod pocztowy do zmiennej x, a następnie definiujemy wyrażenie, którego będziemy używać. Jego wytłumaczenie załączam poniżej. <br>
+            <img src="img/regex.png" alt=""><br>
+
+            Następnie używamy metody <b>test</b> do sprawdzenia czy wyrażenie regularne jest zgodne z danym łańcuchem. Jeżeli tak, to w konsoli wyświetli się napis <b>Zgodne</b>, a jeżeli nie, to <b>Nie zgodne</b>.</p>
+            </p>
+        </div>
+    </div>
+
+    <div class="example">
+        <h2>Sprawdzanie formularza przy użyciu wyrażeń regularnych</h2>
+        <form id="form-example5" action="">
+            <label for="surname-ex5">Imię i nazwisko: <input type="text" name="surname-ex5"></label>
+            <label for="email-ex5">Email: <input type="text" name="email-ex5"></label>
+
+            <input type="submit" value="Wyślij">
+        </form>
+        <br>
+        
+        <div class="code-example">
+            <button class="code-btn" value="0" >HTML</button>
+            <button class="code-btn" value="1" >JS</button>
+<pre><code class="language-html">&lt;form id="form" action=""&gt;
+    &lt;label for="surname"&gt;Imię i nazwisko: &lt;input type="text" id="surname"&gt;&lt;/label&gt;
+    &lt;label for="email"&gt;Email: &lt;input type="text" id="email"&gt;&lt;/label&gt;
+
+    &lt;input type="submit" value="Wyślij"&gt;
+&lt;/form&gt;</code><code class="language-js">const form = document.querySelector('#form');
+
+const patterns = {
+    'surname': /^[a-zA-Z]{2,}\s+[a-zA-Z]{2,}$/i,
+    'email': /^[0-9a-zA-Z_.-]+@[0-9a-zA-Z.-]+\.[a-zA-Z]{2,3}$/i,
+};
+
+const validate = () => {
+    for(let pattern in patterns){
+        if(form[pattern]){
+            if(!patterns[pattern].test(form[pattern].value)){
+                alert(`Pole ${pattern} jest nie poprawne`);
+                return false;
+            }
+        }
+    }
+    alert('Formularz wypełniony poprawnie!');
+    return true;
+}
+
+form.addEventListener('submit', function (event) {
+    event.preventDefault();
+    validate();
+});</code></pre>
+        </div>
+    <div class="description">
+        <p>Po wypełnieniu i wysłaniu formularza sprawdzane zostają wartości w każdym z pól z wykorzstaniem wyrażeń regularnych. W HTML'u tworzymy formularz składający się z 2 pól tekstowych, przycisku submit i nadajemy im identyfikatory. W JS wybieramy elementy formularza oraz sam formularz i przypisujemy je do zmiennych. Tworzymy funkcję strzałkową <b>validate</b>. Wewnątrz używamy pętli for przeszukując poszczególne wzory, sprawdzamy czy w formularzu występuje pole o tej samej nazwie co nazwa aktualnie wybranego wzoru (zmienna pattern). Następnie sprawdzamy czy wartość pola jest zgodna z wybranym wyrażeniem regularnym, jeżeli nie to wyświetlamy alert i zwracamy fałsz zatrzymując funkcje. Po wykonaniu pętli (o ile funkcja nie została zatrzymana wcześniej) wyświetlamy alert o tym, że formularz został poprawnie wypełniony i zwracamy prawdę. Następnie korzystamy z addEventListener (nazwa eventu to - <b>submit</b>), aby wywołać funkcję <b>validate</b>. Warto zwrócić uwagę na zastosowanie <b>event.preventDefault()</b> co zapobiega restartowaniu strony.</p>
+    </div>
+    </div>
+
+    <div class="example">
+        <h2>Zerowanie pól formularza</h2>
+        <form id="form-example6" action="">
+            <label for="surname-ex6">Imię i nazwisko: <input type="text" name="surname-ex6"></label>
+            <label for="email-ex6">Email: <input type="text" name="email-ex6"></label>
+
+            <input type="button" name="resetButton" value="Resetuj">
+        </form>
+        <br>
+        
+        <div class="code-example">
+            <button class="code-btn" value="0" >HTML</button>
+            <button class="code-btn" value="1" >JS</button>
+<pre><code class="language-html">&lt;form id="form" action=""&gt;
+    &lt;label for="surname"&gt;Imię i nazwisko: &lt;input type="text" id="surname"&gt;&lt;/label&gt;
+    &lt;label for="email"&gt;Email: &lt;input type="text" id="email"&gt;&lt;/label&gt;
+
+    &lt;input type="button" name="resetButton" value="Resetuj"&gt;
+&lt;/form&gt;</code><code class="language-js">const form = document.querySelector('#form');
+
+form.resetButton.addEventListener('click', () => {
+    form.reset();
+});</code></pre>
+        </div>
+    <div class="description">
+        <p>Po wypełnieniu formularza możemy wyczyścić wpisane dane po kliknięciu Resetuj. W HTML'u tworzymy formularz, wewnątrz niego 2 pola tekstowe i przycisk <b>resetButton</b>. W JS wybieramy formularz i przypisujemy go do zmiennej. Wybieramy przycisk (form.resetButton - jeżeli określimy name pola to możemy go później znaleźć bez querySelector) i używamy addEventListener. W tym przypadku event to click, a jako drugi argument podajemy funkcję strzałkową. Wewnątrz funkcji za pomocą funkcji <b>reset</b> resetujemy formularz.</p>
+    </div>
+    </div>
+
+    <div class="example">
+        <h2>Inne</h2>
+        
+        <div class="code-example">
+            <button class="code-btn" value="0" >JS</button>
+<pre><code class="language-js">const nazwa_funkcji = (argumenty_funckji) = {
+    // kod
+}</code></pre>
+        </div>
+    <div class="description">
+        <p><b>Funkcja strzałkowa</b> to inny sposób na tworzeniu funkcji. Działa w ten sam sposób co stare rozwiązanie, które umieszczam poniżej.</p>
+    </div>
+
+    <pre><code class="language-js">function nazwa_funkcji(argumenty_funckji){
+    // kod
+}</code></pre>
+    </div>
+
     </main>
 
     <script src="scripts/example1.js"></script>
     <script src="scripts/example2.js"></script>
     <script src="scripts/example3.js"></script>
     <script src="scripts/example4.js"></script>
+    <script src="scripts/example5.js"></script>
+    <script src="scripts/example6.js"></script>
     <script src="scripts/showingCode.js"></script>
 </body>
 </html>
