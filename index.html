@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vanilla JS - przykłady</title>
+
+    <link rel="stylesheet" href="css/style.css">
+
+    <link rel="stylesheet"
+      href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/atom-one-dark.min.css">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
+
+    <script>hljs.highlightAll();</script>
+</head>
+<body>
+    <main>
+        <!-- Header -->
+    <h1>Vanilla JS - przykłady</h1>
+    <hr>
+
+    <!-- Main -->
+    <div class="example">
+        <h2>Baner (przesuwany tekst)</h2>
+        <div class="title" style="left:300px;">Lorem ipsum dolor sit amet.</div>
+        <br>
+        
+        <div class="code-example">
+            <button class="code-btn" value="0" >HTML</button>
+            <button class="code-btn" value="1" >JS</button>
+            <button class="code-btn" value="2" >CSS</button>
+            <pre><code class="language-html">&lt;div class="title" style="left:300px;"&gt;Lorem ipsum dolor sit amet.&lt;/div&gt;</code><code class="language-js">const title = document.querySelector('.title');
+
+window.setInterval(() => {
+    if(parseInt(title.style.left) < 10){
+        title.style.left = '250px';
+    }
+    else{
+        title.style.left = (parseInt(title.style.left) - 3) + 'px';
+    }
+}, 100);</code><code class="language-css">.title{
+    position: relative;
+    left: 0px;
+}</code></pre>
+        </div>
+    <div class="description">
+        <p>Tekst przesuwa się z prawej strony w lewą, a następnie z powrotem wraca na prawą stronę. W HTML'u tworzymy diva z klasą <b>title</b> u ustawiamy wartość <b>left</b> na 300px, aby domyślnie div był przesunięty na prawą stronę. Następnie w JS wyszukujemy div title i przypisujemy go do zmiennej. Tworzymy funkcję <b>window.setInterval</b> i jako pierwszy argument podajemy funkcję anonimową, a jako drugi argument ilość sekund co jaką ma się powtarzać funkcja. Jeżeli wartość left div'a title jest mniejsza niż 10 przywracamy go na prawą stronę ekranu. Jeżeli nie to odejmujemy od wartości left 3 piksele. W CSS zmieniamy ustawiany position na relative, aby mieć możliwość swobodnej zmiany położenia diva, a następnie ustawiamy wartość left na 0px.</p>
+    </div>
+    </div>
+
+    <div class="example">
+        <h2>Baner (tekst pływający)</h2>
+        <div class="title-flowing">Lorem ipsum dolor sit amet.</div>
+        <br>
+        
+        <div class="code-example">
+            <button class="code-btn" value="0" >HTML</button>
+            <button class="code-btn" value="1" >JS</button>
+<pre><code class="language-html">&lt;div class="title"&gt;Lorem ipsum dolor sit amet.&lt;/div&gt;</code><code class="language-js">const title = document.querySelector('.title'); // element, który ma być przesuwany
+const x = 1; // ilość znaków, które mają być przesunięte w lewo
+
+window.setInterval(() => {
+    let content = title.textContent; // pobieramy zawartość elementu
+    title.textContent = content.substring(x) + content.substring(0,x); // przesuwamy zawartość o x znaków w lewo
+}
+, 100);</code></pre>
+        </div>
+    <div class="description">
+        <p>Tekst jest wyświetlany w ciągłej pętli. Tak jak w poprzednim przyładzie w HTML'u tworzym diva z klasa <b>title</b>. W JS'ie znajdujemy ten element i przypisujemy go do zmiennej. Następnie ustalamy zmienną <b>x</b>, czyli liczbę znaków o którą będziemy przesuwać element (w tym przypadku 1).Tworzymy funkcję <b>window.setInterval</b> i jako pierwszy argument podajemy funkcję anonimową, a jako drugi argument ilość sekund co jaką ma się powtarzać funkcja. Zawartość div'a title przypisujemy do zmiennej (content). Zawartości div'a przypisujemy dwa połączone ze sobą łańcuchy:
+            <ul>
+                <li><b>content.substring(x)</b> - z zawartości .title ucinamy od x do końca.</li>
+                <li><b>content.substring(0,x) </b> - z zawartości .title ucinamy od początku do końca.</li>
+            </ul>
+        </p>
+    </div>
+    </div>
+
+    <div class="example">
+        <h2>Animowanie grafiki</h2>
+        <img class="image" src="img/image1.jpg" alt="Zdjęcie">
+        <br>
+        
+        <div class="code-example">
+            <button class="code-btn" value="0" >HTML</button>
+            <button class="code-btn" value="1" >JS</button>
+<pre><code class="language-html">&lt;img class="image" src="img/image1.jpg" alt="Zdjęcie"&gt;</code><code class="language-js">const images = ['img/image1.jpg','img/image2.jpg']
+
+const image = document.querySelector('.image');
+
+image.addEventListener('mouseover', () => {
+    image.src = images[1];
+});
+image.addEventListener('mouseout', () => {
+    image.src = images[0];
+});</code></pre>
+        </div>
+    <div class="description">
+        <p>Zdjęcie zmienia się po najechaniu po myszą, a następnie wraca do pierwotnego stanu. W HTML'u tworzymy <b>img z klasą image</b> i przypisujemy mu domyślne zdjęcie. W JS tworzymy <b>listę z ścieżkami do zdjęć</b> oraz wyszukujemy element utworzony w HTML. Korzystamy z <b>addEventListener</b> aby zarejestrować zdarzenie najechania i zjechania myszą ze zdjęcia (<b>mouseover, mouseout</b>). Po wywołaniu zdarzenia ustawiamy <b>źródło zdjęcia (image.src)</b> na jedną ze ścieżek dostępnych w stworzonej wcześniej <b>liście images</b>.</p>
+    </div>
+    </div>
+    <div class="example">
+        <h2>Sprawdzanie formularza</h2>
+        <form action="">
+            <label for="name">Imię: <input type="text" id="name"></label>
+            <label for="surname">Nazwisko: <input type="text" id="surname"></label>
+            <label for="job">Zawód: <input type="text" id="job"></label>
+
+            <input type="submit" value="Wyślij">
+        </form>
+        <br>
+        
+        <div class="code-example">
+            <button class="code-btn" value="0" >HTML</button>
+            <button class="code-btn" value="1" >JS</button>
+<pre><code class="language-html">&lt;form action=""&gt;
+    &lt;label for="name"&gt;Imię: &lt;input type="text" id="name"&gt;&lt;/label&gt;
+    &lt;label for="surname"&gt;Nazwisko: &lt;input type="text" id="surname"&gt;&lt;/label&gt;
+    &lt;label for="job"&gt;Zawód: &lt;input type="text" id="job"&gt;&lt;/label&gt;
+
+    &lt;input type="submit" value="Wyślij"&gt;
+&lt;/form&gt;</code><code class="language-js">const name = document.querySelector('#name');
+const surname = document.querySelector('#surname');
+const job = document.querySelector('#job');
+const form = document.querySelector('form');
+
+const checkForm = () => {
+    if (name.value.length < 3) {
+        alert('Pole Imię musi mieć przynajmniej 3 znaki');
+        name.focus();
+        return false;
+    }
+    if (surname.value.length < 3) {
+        alert('Pole Nazwisko musi mieć przynajmniej 3 znaki');
+        surname.focus();
+        return false;
+    }
+    if (job.value.length == "") {
+        alert('Pole Zawód musi być wypełnione');
+        job.focus();
+        return false;
+    }
+    alert('Formularz wypełniony poprawnie!');
+    return true;
+}
+
+form.addEventListener('submit', function (event) {
+    event.preventDefault();
+    checkForm();
+});</code></pre>
+        </div>
+    <div class="description">
+        <p>Po wypełnieniu i wysłaniu formularza sprawdzane zostają wartości w każdym z pól. W HTML'u tworzymy formularz składający się z 3 pól tekstowych, przycisku submit i nadejemy im identyfikatory. W JS wybieramy elementy formularza oraz sam formularz i przypisujemy je do zmiennych. Tworzymy funkcję strzałkową <b>checkForm</b>, która sprawdza czy wartości w elementach formularza mają określone długości. Jeżeli nie spełniają wymogów wysyłamy alert użytkownikowi, ustawiamy focus na tym elemencie i zwracamy fałsz. Na koniec zwracamy prawda i wysyłamy wiadomość, że formularz został wypełniony pomyślnie (ta część kodu nie zostanie wywołana jeżeli poprzednie warunki zostały spełnione). Następnie korzystamy z addEventListener (nazwa eventu to - <b>submit</b>), aby wywołać funkcję <b>checkForm</b>. Warto zwrócić uwagę na zastosowanie <b>event.preventDefault()</b> co zapobiega restartowaniu strony.</p>
+    </div>
+    </div>
+
+    <div class="example">
+        <h2>Wyrażenia regularne</h2>
+
+        <div class="code-example">
+            <button class="code-btn" value="0" >JS</button>
+<pre><code class="language-js">
+    const pattern = /^[0-9]+[a-z]+$/;
+</code></pre>
+        </div>
+        
+        <div class="description">
+            <p>Są to wzorce opisujące łańcuch symboli. Przy ich użyciu można sprawdzać i modyfikować teksty. Wyrażenia regularne są wykorzystywane do sprawdzania, czy ciągi znaków wprowadzonych do formularza są zgodne z wymaganymi wzorcami. Jeżeli chcesz zobaczyć wyrażenia regularne w akcji <a href="https://regex101.com/">kliknij tutaj</a>.</p>
+        </div>
+
+    </div>
+    </main>
+
+    <script src="scripts/example1.js"></script>
+    <script src="scripts/example2.js"></script>
+    <script src="scripts/example3.js"></script>
+    <script src="scripts/example4.js"></script>
+    <script src="scripts/showingCode.js"></script>
+</body>
+</html>

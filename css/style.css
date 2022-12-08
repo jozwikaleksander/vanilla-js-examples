@@ -1,0 +1,138 @@
+:root{
+    --font-color: #ECEFF4;
+    --background-color: #2E3440;
+    --foreground-color: #434C5E;
+    --yellow-accent: #EBCB8B;
+    --red-accent: #BF616A;
+    --green-accent: #A3BE8C;
+    --font-family: 'Fira Code';
+    --font-size: 12px;
+    --transition:.2s linear all;
+}
+
+body{
+    background-color: var(--background-color);
+    color: var(--font-color);
+    font-family: var(--font-family);
+    font-size: var(--font-size);
+}
+/* Main */
+main{
+    margin: 0 auto;
+    max-width: 800px;
+    padding: 0 20px;
+    overflow: hidden;
+}
+
+/* Header */
+h1{
+    color: var(--yellow-accent);
+    font-size: 2em;
+    text-align: center;
+}
+hr{
+    border: 1px solid var(--yellow-accent);
+}
+pre{
+    margin-top:10px;
+    padding: 0;
+}
+
+code{
+    background-color: var(--foreground-color);
+    border-radius: 10px;
+    position: relative;
+    left:0px;
+    top:0px;
+}
+.title{
+    position: relative;
+    left: 0px;
+}
+h3{
+    color: var(--yellow-accent);
+    font-size: 1.5em;
+    margin: 0;
+}
+.code-btn{
+    margin: 0;
+    background-color: var(--yellow-accent);
+    border-radius: 30px;
+    padding: 5px;
+    min-width: 80px;
+    border:var(--yellow-accent) 1px solid;
+    transition: var(--transition);
+    font-weight: bold;
+}
+.code-btn:nth-child(1){
+    background-color: var(--red-accent);
+    border-color: var(--red-accent);
+}
+.code-btn:nth-child(1):hover{
+    background-color: transparent;
+    color: var(--red-accent);
+}
+.code-btn:nth-child(2){
+    background-color: var(--green-accent);
+    border-color: var(--green-accent);
+}
+.code-btn:nth-child(2):hover{
+    background-color: transparent;
+    color: var(--green-accent);
+}
+.code-btn:nth-child(3){
+    background-color: var(--yellow-accent);
+    border-color: var(--yellow-accent);
+}
+.code-btn:nth-child(3):hover{
+    background-color: transparent;
+    color: var(--yellow-accent);
+}
+.description{
+    background-color: var(--foreground-color);
+    padding: 10px;
+    border-radius:10px;
+}
+.description p{
+    margin: 0;
+    padding: 0;
+    line-height: 1.25rem;
+}
+b{
+    color: var(--yellow-accent);
+}
+.image{
+    border-radius: 15px;
+    margin-bottom: 10px;
+}
+form{
+    display: flex;
+    flex-direction: column;
+}
+input[type="text"]{
+    margin: 5px 0;
+    padding: 5px;
+    border-radius: 5px;
+    border: 1px solid var(--yellow-accent);
+    background-color: transparent;
+    color: var(--font-color);
+    transition: var(--transition);
+}
+input[type="text"]:focus{
+    background-color: var(--yellow-accent);
+    color: var(--foreground-color);
+}
+input[type="submit"]{
+    margin: 5px 0;
+    padding: 5px;
+    border-radius: 5px;
+    border: 1px solid var(--red-accent);
+    background-color: transparent;
+    color: var(--font-color);
+    transition: var(--transition);
+    width: 300px;
+}
+input[type="submit"]:hover{
+    background-color: var(--red-accent);
+    color: var(--foreground-color);
+}
