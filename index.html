@@ -72,7 +72,7 @@ window.setInterval(() => {
         <p>Tekst jest wyświetlany w ciągłej pętli. Tak jak w poprzednim przyładzie w HTML'u tworzym diva z klasa <b>title</b>. W JS'ie znajdujemy ten element i przypisujemy go do zmiennej. Następnie ustalamy zmienną <b>x</b>, czyli liczbę znaków o którą będziemy przesuwać element (w tym przypadku 1).Tworzymy funkcję <b>window.setInterval</b> i jako pierwszy argument podajemy funkcję anonimową, a jako drugi argument ilość sekund co jaką ma się powtarzać funkcja. Zawartość div'a title przypisujemy do zmiennej (content). Zawartości div'a przypisujemy dwa połączone ze sobą łańcuchy:
             <ul>
                 <li><b>content.substring(x)</b> - z zawartości .title ucinamy od x do końca.</li>
-                <li><b>content.substring(0,x) </b> - z zawartości .title ucinamy od początku do końca.</li>
+                <li><b>content.substring(0,x) </b> - z zawartości .title ucinamy od początku do x.</li>
             </ul>
         </p>
     </div>
